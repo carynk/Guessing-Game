@@ -1,69 +1,44 @@
 
-<script>
-'use strict';
+'use strict'
 
-Game = function (question, answer) {
+//variables to access the DOM
+
+var msg = document.getElementById('display-msg');
+
+//Constructor to create Game object w/ properties and methods)
+
+var Game = function (question, answer) {
 	this.question = question;
-	this.answer = answer;
-	this.guess = 0;
-	this.message = '';
-	this.playGame = function() {
-		this.guess = prompt(this.question);
+	this.answer = answer; //right answer
+	this.guess = 0; //player guess
+	this.message = ''; //alert after each guess (var msg1 and 2?)
+		
+	this.playGame = function() {	
+			this.guess = prompt(this.question); 
+				for (var i = 0; i < 5; i++) {	//setting parameters for conditional guesses and messages
+					
+				if (this.guess < this.answer) {
+					this.message = 'I am offended that you think so little of my imagination. This was guess ' + (i + 1) + ' of 5';
+					msg.innerHTML = this.message;
+					this.guess = prompt("You can do better than that. Try again.");
+				} 
+					else if (this.guess > this.answer) {
+					this.message = 'Whoa, it\'s a cookie, not a candy bar, man! This was guess ' + (i + 1) + ' of 5';
+					msg.innerHTML = this.message;
+					this.guess=prompt("Really? C'mon now. Give it another shot.");
 
-		for ( var i = 1; i < 5; i++) {
-
-			
-			if (this.guess < this.answer) {
-				this.message = 'I am offended that you think so little of me. This was guess ' + i + ' of 5';
-				alert(this.message);
-				this.guess=prompt("Try again");
-			} else if (this.guess > this.answer) {
-				this.message = 'Whoa, it\'s a cookie, not a candy bar, man! This was guess ' + i + ' of 5';
-				alert(this.message);
-				this.guess=prompt("Try again");
-			} else {  
-				this.message = 'You read my mind! Got any milk?';
-				alert(this.message);
-				break;
-			}
-		}	
-		alert('Thank you for playing.');
-	}	
+				} else {  
+					this.message = 'You read my mind! Got any soy milk?';
+					msg.innerHTML = this.message;
+				}
+			}	
+		msg.innerHTML = 'Thank you for playing. Please exit my imagination now.';
+	}
 }
-
+//CREATING INSTANCES OF THE GAME
 var firstGame = new Game('Guess how many chocolate chips are in my imaginary cookie!', 27);	
+
 firstGame.playGame();
-</script>
-
-// Friday - notes off of class sample:
-//var firstHint = document.getElementById('first-hint')
-//first.Hint.innerHTML = hint1;
-
-//function addToHintList() {
-//	var hintListItem = document.createELement('li'):
-//	var hintNode = document.createTextNode(hint1)
-//	hintListItem.appendChild'(hintNode);
-//	document.getElementById('hint-list').appendChild(hintListItem);('')
-//}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
